@@ -11,10 +11,19 @@ public class ClusterResource {
 
     @GET
     @Path("{id}")
-    public Cluster getCluster(@PathParam("id") String id) {
+    public String getCluster(@PathParam("id") String id) {
         Cluster c = new Cluster();
         c.setId(Integer.valueOf(id));
         c.setName("GF Cluster");
-        return c;
+        return "Hello!";
     }
+
+//    @GET
+//    @Path("{id}")
+//    public Cluster getCluster(@PathParam("id") String id) {
+//        Cluster c = new Cluster();
+//        c.setId(Integer.valueOf(id));
+//        c.setName("GF Cluster");
+//        return c;
+//    }
 }
