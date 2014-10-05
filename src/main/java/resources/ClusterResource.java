@@ -9,7 +9,7 @@ import javax.ws.rs.PathParam;
 @Path("/admin")
 public class ClusterResource {
 
-    @GET
+    @POST
     @Path("{id}")
     public String getCluster(@PathParam("id") String id) {
         Cluster c = new Cluster();
