@@ -12,6 +12,7 @@ public class ClusterResource {
     @POST
     @Path("{id}")
     public String getCluster(@PathParam("id") String id) {
+        System.out.println("kawamoto----"+id);
         Cluster c = new Cluster();
         c.setId(Integer.valueOf(id));
         c.setName("GF Cluster");
