@@ -15,7 +15,7 @@ public class ClusterResource {
         Cluster c = new Cluster();
         c.setId(Integer.valueOf(id));
         c.setName("GF Cluster");
-        return "Hello!";
+        return "POST DATA RECEIVED. data[]";
     }
 
 //    @GET
