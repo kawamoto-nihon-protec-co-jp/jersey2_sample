@@ -25,7 +25,7 @@ public class ClusterResource {
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Cluster getCluster() {
         Cluster c = new Cluster();
-        c.setId(Integer.valueOf("25"));
+        c.setId(Integer.valueOf("30"));
         c.setName("GF Cluster");
         return c;
     }
