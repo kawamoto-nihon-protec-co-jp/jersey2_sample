@@ -23,7 +23,7 @@ public class ClusterResource {
 
 	@POST
 	@Path("/putMessage")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_ATOM_XML)
     public Cluster getCluster(@PathParam("id") String id) {
         Cluster c = new Cluster();
         c.setId(Integer.valueOf(id));
