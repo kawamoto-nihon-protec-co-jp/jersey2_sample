@@ -1,20 +1,20 @@
 package resources;
 
-import core.Cluster;
-
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+
+import core.Cluster;
 
 @Path("/admin")
 public class ClusterResource {
 
     @POST
-    @Path("{id}")
-    public String getCluster(@PathParam("id") String id) {
-        System.out.println("kawamoto----"+id);
+//    @Path("{id}")
+    public String getCluster(@FormParam("data") String data) {
+        System.out.println("kawamoto----"+data);
         Cluster c = new Cluster();
-        c.setId(Integer.valueOf(id));
+        c.setId(Integer.valueOf(data));
         c.setName("GF Cluster");
         return "POST DATA RECEIVED. data[]";
     }

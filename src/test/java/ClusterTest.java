@@ -1,3 +1,8 @@
+import static junit.framework.Assert.*;
+
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
+
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ApplicationHandler;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -5,13 +10,9 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
 import org.glassfish.jersey.test.spi.TestContainer;
 import org.junit.Test;
-import core.Cluster;
+
 import resources.ClusterResource;
-
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
-
-import static junit.framework.Assert.assertEquals;
+import core.Cluster;
 
 public class ClusterTest extends JerseyTest {
 
