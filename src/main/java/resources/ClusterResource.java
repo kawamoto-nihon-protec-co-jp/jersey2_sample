@@ -1,7 +1,6 @@
 package resources;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
@@ -20,8 +19,7 @@ public class ClusterResource {
 //        return "POST DATA RECEIVED. data[]";
 //    }
 
-    @POST
-    @Consumes("application/octet-stream")
+    @GET
     @Path("{id}")
     public Cluster getCluster(@PathParam("id") String id) {
         Cluster c = new Cluster();
