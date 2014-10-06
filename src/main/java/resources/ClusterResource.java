@@ -1,8 +1,8 @@
 package resources;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import core.Cluster;
@@ -22,7 +22,8 @@ public class ClusterResource {
 
 	@POST
 	@Path("/putMessage")
-	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+	@Consumes(MediaType.APPLICATION_OCTET_STREAM)
+//	@Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Cluster getCluster() {
         Cluster c = new Cluster();
         c.setId(Integer.valueOf("30"));
