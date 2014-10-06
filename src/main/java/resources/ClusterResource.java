@@ -1,6 +1,6 @@
 package resources;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
@@ -19,7 +19,7 @@ public class ClusterResource {
 //        return "POST DATA RECEIVED. data[]";
 //    }
 
-    @GET
+    @POST
     @Path("{id}")
     public Cluster getCluster(@PathParam("id") String id) {
         Cluster c = new Cluster();
