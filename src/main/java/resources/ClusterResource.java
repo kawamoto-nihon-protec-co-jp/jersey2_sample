@@ -22,10 +22,10 @@ public class ClusterResource {
 
 	@POST
 	@Path("/putMessage")
-	@Produces(MediaType.APPLICATION_ATOM_XML)
-    public Cluster getCluster(/*@PathParam("id") String id*/) {
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+    public Cluster getCluster() {
         Cluster c = new Cluster();
-        c.setId(Integer.valueOf("35"));
+        c.setId(Integer.valueOf("25"));
         c.setName("GF Cluster");
         return c;
     }
