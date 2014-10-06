@@ -3,8 +3,6 @@ package resources;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import core.Cluster;
 
@@ -23,7 +21,7 @@ public class ClusterResource {
 
 	@POST
 	@Path("/putMessage")
-	@Produces(MediaType.APPLICATION_ATOM_XML)
+//	@Produces(MediaType.APPLICATION_ATOM_XML)
     public Cluster getCluster(@PathParam("id") String id) {
         Cluster c = new Cluster();
         c.setId(Integer.valueOf(id));
