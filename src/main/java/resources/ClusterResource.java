@@ -3,9 +3,10 @@ package resources;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import core.Cluster;
+import core.TransData;
 
 @Path("/admin")
 public class ClusterResource {
@@ -22,12 +23,15 @@ public class ClusterResource {
 
 	@POST
 	@Path("/putMessage")
-	@Consumes(MediaType.APPLICATION_OCTET_STREAM)
-//	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Cluster getCluster() {
-        Cluster c = new Cluster();
-        c.setId(Integer.valueOf("30"));
-        c.setName("GF Cluster");
-        return c;
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+    public TransData getCluster(TransData data) {
+//	//public Cluster getCluster() {
+//        Cluster c = new Cluster();
+//        c.setId(Integer.valueOf("30"));
+//        c.setName("GF Cluster");
+		TransData responseData = new TransData();
+		responseData.setData(data.getData());
+        return responseData;
     }
 }
