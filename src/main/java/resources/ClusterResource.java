@@ -1,13 +1,16 @@
 package resources;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.seasar.doma.jdbc.tx.LocalTransaction;
@@ -37,32 +40,42 @@ public class ClusterResource {
     @GET
     @Path("/getMessage")
 //    @JSONP
-    @Produces({"application/javascript",MediaType.APPLICATION_JSON})
+//    @Produces({"application/javascript",MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
 //    @Produces(MediaType.APPLICATION_JSON)
 //    @Produces(MediaType.TEXT_PLAIN)
-    public String getMessage() {
+    public JsonList getMessage(@Context HttpServletResponse res) {
         System.out.println("--------------getMessage");
 //        ObjectMapper mapper = new ObjectMapper();
         HealthInfoDao dao = new HealthInfoDaoImpl();
         tx.begin();
         List<HealthInfo> list = dao.selectAll();
         tx.commit();
-        List<String> li = new ArrayList<String>();
-        li.add("80");
-        li.add("90");
+        List<JsonBean> li = new ArrayList<JsonBean>();
+//        li.add("80");
+//        li.add("90");
         JsonList json = new JsonList();
-        json.list = li;
+//        json.list = li;
         JsonBean responseData = new JsonBean();
-        responseData.foo = "kawamoto";
-        responseData.bar = "80";
+        responseData.id = "kawamoto";
+        responseData.name = "80";
+        li.add(responseData);
+        li.add(responseData);
+        li.add(responseData);
+        json.data = li;
+        LinkedHashMap<String, JsonBean> m = new LinkedHashMap<String, JsonBean>();
+        m.put("data", responseData);
 //        try {
 //            String js = mapper.writeValueAsString(responseData);
 //        } catch (IOException e) {
 //            // TODO 自動生成された catch ブロック
 //            e.printStackTrace();
 //        }
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, DELETE, OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
         String response = "{\"data\":[{\"id\":\"kawamoto@nihon-protec.co.jp\",\"name\":\"kawamoto\"}]}";
-        return response;
+        return json;
 //        return new CurrentDate("kawamoto");
     }
 
