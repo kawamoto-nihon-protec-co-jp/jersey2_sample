@@ -12,24 +12,46 @@ import org.seasar.doma.Table;
 public class HeartRate {
 
     /**  */
-    @Column(name = "idHEART_RATE")
-    Integer idheartRate;
+    @Column(name = "ID")
+    Integer id;
+
+    /**  */
+    @Column(name = "HEART_RATE")
+    Integer heartRate;
 
     /** 
-     * Returns the idheartRate.
+     * Returns the id.
      * 
-     * @return the idheartRate
+     * @return the id
      */
-    public Integer getIdheartRate() {
-        return idheartRate;
+    public Integer getId() {
+        return id;
     }
 
     /** 
-     * Sets the idheartRate.
+     * Sets the id.
      * 
-     * @param idheartRate the idheartRate
+     * @param id the id
      */
-    public void setIdheartRate(Integer idheartRate) {
-        this.idheartRate = idheartRate;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /** 
+     * Returns the heartRate.
+     * 
+     * @return the heartRate
+     */
+    public Integer getHeartRate() {
+        return heartRate;
+    }
+
+    /** 
+     * Sets the heartRate.
+     * 
+     * @param heartRate the heartRate
+     */
+    public void setHeartRate(Integer heartRate) {
+        this.heartRate = heartRate;
     }
 }
