@@ -65,12 +65,6 @@ public class ClusterResource {
         json.data = li;
         LinkedHashMap<String, JsonBean> m = new LinkedHashMap<String, JsonBean>();
         m.put("data", responseData);
-//        try {
-//            String js = mapper.writeValueAsString(responseData);
-//        } catch (IOException e) {
-//            // TODO 自動生成された catch ブロック
-//            e.printStackTrace();
-//        }
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, DELETE, OPTIONS");
         res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
