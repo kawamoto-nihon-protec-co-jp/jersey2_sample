@@ -2,6 +2,7 @@ package core;
 
 
 public class JsonBean {
-    public String id;
-    public String name;
+    public String userId;
+    public String heartRate;
+    public String assayDate;
 }

@@ -14,6 +14,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.seasar.doma.jdbc.tx.LocalTransaction;
+import org.seasar.util.convert.StringConversionUtil;
 
 import com.kpp.config.AppConfig;
 import com.kpp.dao.HealthInfoDao;
@@ -45,32 +46,25 @@ public class ClusterResource {
 //    @Produces(MediaType.APPLICATION_JSON)
 //    @Produces(MediaType.TEXT_PLAIN)
     public JsonList getMessage(@Context HttpServletResponse res) {
-        System.out.println("--------------getMessage");
-//        ObjectMapper mapper = new ObjectMapper();
-        HealthInfoDao dao = new HealthInfoDaoImpl();
         tx.begin();
-        List<HealthInfo> list = dao.selectAll();
+        HealthInfoDao dao = new HealthInfoDaoImpl();
+        List<HealthInfo> datas = dao.selectAll();
         tx.commit();
-        List<JsonBean> li = new ArrayList<JsonBean>();
-//        li.add("80");
-//        li.add("90");
+        List<JsonBean> beans = new ArrayList<JsonBean>();
+        for (HealthInfo entity : datas) {
+            JsonBean bean = new JsonBean();
+            bean.userId = entity.getUserId();
+            bean.heartRate = StringConversionUtil.toString(entity.getHeartRate());
+            bean.assayDate = StringConversionUtil.toString(entity.getAssayDate());
+            beans.add(bean);
+        }
         JsonList json = new JsonList();
-//        json.list = li;
-        JsonBean responseData = new JsonBean();
-        responseData.id = "kawamoto";
-        responseData.name = "80";
-        li.add(responseData);
-        li.add(responseData);
-        li.add(responseData);
-        json.data = li;
+        json.data = beans;
         LinkedHashMap<String, JsonBean> m = new LinkedHashMap<String, JsonBean>();
-        m.put("data", responseData);
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, DELETE, OPTIONS");
         res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
-        String response = "{\"data\":[{\"id\":\"kawamoto@nihon-protec.co.jp\",\"name\":\"kawamoto\"}]}";
         return json;
-//        return new CurrentDate("kawamoto");
     }
 
     @POST
