@@ -3,6 +3,7 @@ package resources;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.filter.LoggingFilter;
@@ -11,6 +12,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 /**
  * JAX-RS App Server Portable Deployment Artifact
  */
+@ApplicationPath("/")
 public class MyApplication extends Application {
 
     @Override
