@@ -16,7 +16,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.glassfish.jersey.server.mvc.Template;
 import org.seasar.doma.jdbc.tx.LocalTransaction;
 import org.seasar.util.convert.StringConversionUtil;
 
@@ -81,6 +80,7 @@ public class ClusterResource {
 //        Cluster c = new Cluster();
 //        c.setId(Integer.valueOf("30"));
 //        c.setName("GF Cluster");
+
         // 開始
         tx.begin();
         HealthInfoDao dao = new HealthInfoDaoImpl();
@@ -96,7 +96,6 @@ public class ClusterResource {
 
     @GET
     @Path("/index")
-    @Template(name="/withrs")
     public Response getSample (@Context UriInfo uriInfo) {
         URI uri = uriInfo.getBaseUriBuilder().path("index.html").build();
         return Response.seeOther(uri).build();
