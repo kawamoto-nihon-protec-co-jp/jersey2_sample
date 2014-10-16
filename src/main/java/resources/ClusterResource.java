@@ -1,5 +1,6 @@
 package resources;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,7 +13,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
+import org.glassfish.jersey.server.mvc.Template;
 import org.seasar.doma.jdbc.tx.LocalTransaction;
 import org.seasar.util.convert.StringConversionUtil;
 
@@ -48,6 +52,7 @@ public class ClusterResource {
     public JsonList getMessage(@Context HttpServletResponse res) {
         tx.begin();
         HealthInfoDao dao = new HealthInfoDaoImpl();
+
         List<HealthInfo> datas = dao.selectAll();
         tx.commit();
         List<JsonBean> beans = new ArrayList<JsonBean>();
@@ -87,5 +92,13 @@ public class ClusterResource {
         TransData responseData = new TransData();
         responseData.setData(data.getData());
         return responseData;
+    }
+
+    @GET
+    @Path("/index")
+    @Template(name="/withrs")
+    public Response getSample (@Context UriInfo uriInfo) {
+        URI uri = uriInfo.getBaseUriBuilder().path("index.html").build();
+        return Response.seeOther(uri).build();
     }
 }
